@@ -1,0 +1,613 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About - Dust Media Server" description="Learn about Dust - a free and open-source media server built for book collectors and reading enthusiasts.">
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <h1>About Dust</h1>
+        <p>A media server built by readers, for readers</p>
+      </div>
+    </section>
+
+    <section class="mission">
+      <div class="container">
+        <div class="mission-content">
+          <h2>Our Mission</h2>
+          <p>
+            Dust was created to solve a simple problem: managing large digital book and comic 
+            collections shouldn't require complicated software or cloud services. Your library 
+            should be yours—hosted on your hardware, organized your way, with complete privacy 
+            and control.
+          </p>
+          <p>
+            We believe that personal media servers should be accessible to everyone, not just 
+            technical experts. That's why Dust focuses on simplicity, self-hosting, and 
+            extensibility.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="open-source">
+      <div class="container">
+        <h2>Free and Open Source</h2>
+        
+        <div class="foss-grid">
+          <div class="foss-card">
+            <div class="foss-icon">📜</div>
+            <h3>MIT Licensed</h3>
+            <p>
+              Dust is released under the permissive MIT license. Use it, modify it, 
+              distribute it—commercially or personally—with minimal restrictions.
+            </p>
+          </div>
+
+          <div class="foss-card">
+            <div class="foss-icon">👥</div>
+            <h3>Community Driven</h3>
+            <p>
+              Dust is developed openly on GitHub with contributions from developers 
+              around the world. Everyone's welcome to contribute code, documentation, or ideas.
+            </p>
+          </div>
+
+          <div class="foss-card">
+            <div class="foss-icon">🔓</div>
+            <h3>No Lock-In</h3>
+            <p>
+              Your data stays in open formats. No proprietary databases, no vendor lock-in, 
+              no subscriptions. Export your data anytime.
+            </p>
+          </div>
+
+          <div class="foss-card">
+            <div class="foss-icon">🔒</div>
+            <h3>Privacy First</h3>
+            <p>
+              Self-hosted means your reading habits, library contents, and personal data 
+              never leave your server. No tracking, no telemetry, no cloud dependencies.
+            </p>
+          </div>
+
+          <div class="foss-card">
+            <div class="foss-icon">🛠️</div>
+            <h3>Transparent Development</h3>
+            <p>
+              Every line of code is open for inspection. See exactly how Dust works, 
+              verify security practices, and audit the codebase yourself.
+            </p>
+          </div>
+
+          <div class="foss-card">
+            <div class="foss-icon">🌍</div>
+            <h3>Built to Last</h3>
+            <p>
+              Open source means Dust can live forever. Even if the original developers move on, 
+              the community can maintain and improve it indefinitely.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tech-stack">
+      <div class="container">
+        <h2>Technology</h2>
+        <p class="tech-intro">
+          Dust is built with modern, performant technology designed for reliability and efficiency.
+        </p>
+
+        <div class="tech-details">
+          <div class="tech-item">
+            <h3>🚀 High Performance</h3>
+            <p>
+              Written in Zig for exceptional performance and low memory usage. Perfect for 
+              running on resource-constrained devices like Raspberry Pi or older hardware.
+            </p>
+          </div>
+
+          <div class="tech-item">
+            <h3>💾 SQLite Database</h3>
+            <p>
+              Uses embedded SQLite for zero-configuration storage. No separate database server 
+              required—everything in a single file that's easy to backup and restore.
+            </p>
+          </div>
+
+          <div class="tech-item">
+            <h3>🌐 Modern Web Client</h3>
+            <p>
+              Official web client built with Lit and TypeScript. Fast, responsive, and works 
+              on any modern browser. But feel free to build your own!
+            </p>
+          </div>
+
+          <div class="tech-item">
+            <h3>📡 RESTful API</h3>
+            <p>
+              Clean, well-documented REST API with JWT authentication. Build mobile apps, 
+              desktop clients, or integrations with other tools.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="use-cases">
+      <div class="container">
+        <h2>Who Uses Dust?</h2>
+        
+        <div class="use-case-grid">
+          <div class="use-case">
+            <h3>📚 Book Collectors</h3>
+            <p>
+              Manage thousands of eBooks with automatic metadata, cover art, and organization. 
+              Perfect for those with extensive digital libraries spanning multiple formats.
+            </p>
+          </div>
+
+          <div class="use-case">
+            <h3>🏠 Homelab Enthusiasts</h3>
+            <p>
+              Add a media server to your homelab alongside other self-hosted services. 
+              Integrates nicely with reverse proxies, authentication systems, and monitoring tools.
+            </p>
+          </div>
+
+          <div class="use-case">
+            <h3>👨‍👩‍👧‍👦 Families</h3>
+            <p>
+              Create separate accounts for family members with age-appropriate content filtering. 
+              Track reading progress individually and share a common library.
+            </p>
+          </div>
+
+          <div class="use-case">
+            <h3>📖 Educators & Students</h3>
+            <p>
+              Organize textbooks, research papers, and educational materials in one place. 
+              Share access with study groups while maintaining control over your collection.
+            </p>
+          </div>
+
+          <div class="use-case">
+            <h3>🎨 Comic Collectors</h3>
+            <p>
+              Manage comic collections with support for CBR/CBZ formats. Organize by publisher, 
+              series, and issue number with automatic cover detection.
+            </p>
+          </div>
+
+          <div class="use-case">
+            <h3>👨‍💻 Developers</h3>
+            <p>
+              Build custom clients and integrations using the comprehensive REST API. 
+              Create tools that fit your exact workflow and reading preferences.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="principles">
+      <div class="container">
+        <h2>Our Principles</h2>
+        
+        <div class="principles-list">
+          <div class="principle">
+            <div class="principle-number">1</div>
+            <div class="principle-content">
+              <h3>Simplicity Over Complexity</h3>
+              <p>
+                One-command installation, minimal configuration, and sensible defaults. 
+                Getting started should be measured in minutes, not hours.
+              </p>
+            </div>
+          </div>
+
+          <div class="principle">
+            <div class="principle-number">2</div>
+            <div class="principle-content">
+              <h3>Privacy by Default</h3>
+              <p>
+                Self-hosted architecture means your data stays with you. No analytics, 
+                no tracking, no phone-home features.
+              </p>
+            </div>
+          </div>
+
+          <div class="principle">
+            <div class="principle-number">3</div>
+            <div class="principle-content">
+              <h3>Extensibility Through APIs</h3>
+              <p>
+                The official client is just one option. Build what works for you using 
+                our comprehensive REST API.
+              </p>
+            </div>
+          </div>
+
+          <div class="principle">
+            <div class="principle-number">4</div>
+            <div class="principle-content">
+              <h3>Open Development</h3>
+              <p>
+                Development happens in the open on GitHub. Feature requests, bug reports, 
+                and contributions are always welcome.
+              </p>
+            </div>
+          </div>
+
+          <div class="principle">
+            <div class="principle-number">5</div>
+            <div class="principle-content">
+              <h3>Performance Matters</h3>
+              <p>
+                Fast response times and low resource usage. Run Dust on modest hardware 
+                without compromising functionality.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="get-involved">
+      <div class="container">
+        <h2>Get Involved</h2>
+        <p>Dust is built by the community, and we'd love your help.</p>
+
+        <div class="involvement-grid">
+          <div class="involvement-card">
+            <h3>💻 Contribute Code</h3>
+            <p>
+              Found a bug? Want to add a feature? PRs are welcome! Check out our 
+              contributing guide to get started.
+            </p>
+            <a href="https://github.com/dust-books/dust-server/blob/main/CONTRIBUTING.md" class="btn-secondary" target="_blank" rel="noopener">
+              Contributing Guide
+            </a>
+          </div>
+
+          <div class="involvement-card">
+            <h3>📖 Improve Docs</h3>
+            <p>
+              Help make Dust easier to use by improving documentation, writing guides, 
+              or translating content.
+            </p>
+            <a href="https://github.com/dust-books/dust-server" class="btn-secondary" target="_blank" rel="noopener">
+              View Docs
+            </a>
+          </div>
+
+          <div class="involvement-card">
+            <h3>🐛 Report Issues</h3>
+            <p>
+              Found a problem? Let us know! Detailed bug reports help us improve Dust 
+              for everyone.
+            </p>
+            <a href="https://github.com/dust-books/dust-server/issues" class="btn-secondary" target="_blank" rel="noopener">
+              Report Issue
+            </a>
+          </div>
+
+          <div class="involvement-card">
+            <h3>💬 Join Discussions</h3>
+            <p>
+              Share ideas, ask questions, and connect with other Dust users in our 
+              GitHub Discussions.
+            </p>
+            <a href="https://github.com/dust-books/dust-server/discussions" class="btn-secondary" target="_blank" rel="noopener">
+              Join Discussion
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final">
+      <div class="container">
+        <h2>Ready to Start?</h2>
+        <p>Set up your own Dust server and take control of your digital library.</p>
+        <div class="cta-actions">
+          <a href="/setup" class="btn-primary">Get Started</a>
+          <a href="https://github.com/dust-books/dust-server" class="btn-secondary" target="_blank" rel="noopener">
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    flex: 1;
+  }
+
+  .page-header {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  }
+
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .page-header p {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+  }
+
+  .mission {
+    padding: 4rem 0;
+  }
+
+  .mission-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .mission-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .mission-content p {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+  }
+
+  .open-source {
+    padding: 4rem 0;
+    background: var(--color-bg-light);
+  }
+
+  .open-source h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .foss-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .foss-card {
+    background: var(--color-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .foss-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .foss-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .foss-card p {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .tech-stack {
+    padding: 4rem 0;
+  }
+
+  .tech-stack h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .tech-intro {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+    margin-bottom: 3rem;
+  }
+
+  .tech-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .tech-item {
+    background: var(--color-bg-light);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .tech-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .tech-item p {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .use-cases {
+    padding: 4rem 0;
+    background: var(--color-bg-light);
+  }
+
+  .use-cases h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .use-case-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .use-case {
+    background: var(--color-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .use-case h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .use-case p {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .principles {
+    padding: 4rem 0;
+  }
+
+  .principles h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .principles-list {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .principle {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    align-items: flex-start;
+  }
+
+  .principle-number {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .principle-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .principle-content p {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+
+  .get-involved {
+    padding: 4rem 0;
+    background: var(--color-bg-light);
+  }
+
+  .get-involved h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .get-involved > .container > p {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+    margin-bottom: 3rem;
+  }
+
+  .involvement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .involvement-card {
+    background: var(--color-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .involvement-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .involvement-card p {
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    flex: 1;
+    line-height: 1.7;
+  }
+
+  .cta-final {
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .cta-final h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-final p {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .principle {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .foss-grid, .tech-details, .use-case-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

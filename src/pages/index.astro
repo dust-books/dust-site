@@ -1,0 +1,290 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Dust - Media Server for eBooks and Digital Comics">
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Your Personal Library<br />Deserves Better</h1>
+          <p class="hero-subtitle">
+            Dust is a free and open-source media server for eBooks and digital comics. 
+            Self-hosted, powerful, and built for book collectors.
+          </p>
+          <div class="hero-actions">
+            <a href="/setup" class="btn-primary">Get Started</a>
+            <a href="https://github.com/dust-books/dust-server" class="btn-secondary" target="_blank" rel="noopener">
+              View on GitHub
+            </a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="/images/hero-screenshot.png" alt="Dust Server Interface" />
+        </div>
+      </div>
+    </section>
+
+    <section class="features-preview">
+      <div class="container">
+        <h2>Built for Book Lovers</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📖</div>
+            <h3>Multi-Format Support</h3>
+            <p>EPUB, PDF, MOBI, AZW3, CBR, CBZ - all your reading formats in one place.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3>Smart Metadata</h3>
+            <p>Automatic metadata and cover fetching via ISBN lookup from OpenLibrary and Google Books.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3>Multi-User Support</h3>
+            <p>Individual accounts with role-based permissions and personalized reading tracking.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Reading Progress</h3>
+            <p>Track your reading progress across all your devices automatically.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🏷️</div>
+            <h3>Smart Organization</h3>
+            <p>Tag-based content filtering with custom categories and permission controls.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3>Easy Deployment</h3>
+            <p>One-command installation on Ubuntu. Perfect for homelabs and personal servers.</p>
+          </div>
+        </div>
+        <div class="cta-section">
+          <a href="/features" class="btn-primary">See All Features</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="open-source">
+      <div class="container">
+        <div class="open-source-content">
+          <h2>Free and Open Source</h2>
+          <p>
+            Dust is FOSS software licensed under MIT. Your library, your data, your control. 
+            No subscriptions, no tracking, no cloud dependencies.
+          </p>
+          <ul class="benefits-list">
+            <li>✅ Self-hosted on your own hardware</li>
+            <li>✅ Complete data ownership</li>
+            <li>✅ Active community development</li>
+            <li>✅ Extensible REST API</li>
+          </ul>
+          <a href="/about" class="btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-start">
+      <div class="container">
+        <h2>Get Started in Minutes</h2>
+        <div class="install-box">
+          <pre><code>curl -fsSL https://raw.githubusercontent.com/dust-books/dust-server/main/scripts/install.sh | sudo bash</code></pre>
+        </div>
+        <p class="install-note">One command to install Dust on Ubuntu/Debian. That's it.</p>
+        <a href="/setup" class="btn-primary">View Full Setup Guide</a>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    flex: 1;
+  }
+
+  .hero {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  }
+
+  .hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-image {
+    position: relative;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--color-border);
+  }
+
+  .features-preview {
+    padding: 6rem 0;
+  }
+
+  .features-preview h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .feature-card {
+    background: var(--color-bg-light);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-card p {
+    color: var(--color-text-muted);
+  }
+
+  .cta-section {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .open-source {
+    padding: 6rem 0;
+    background: var(--color-bg-light);
+  }
+
+  .open-source-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .open-source-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .open-source-content p {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .benefits-list {
+    list-style: none;
+    margin-bottom: 2rem;
+    text-align: left;
+    display: inline-block;
+  }
+
+  .benefits-list li {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .quick-start {
+    padding: 6rem 0;
+  }
+
+  .quick-start h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .install-box {
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+  }
+
+  .install-box pre {
+    margin: 0;
+  }
+
+  .install-box code {
+    color: var(--color-accent);
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.95rem;
+  }
+
+  .install-note {
+    text-align: center;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .quick-start > .container {
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .hero .container {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

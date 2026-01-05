@@ -1,0 +1,278 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Features - Dust Media Server" description="Explore all the powerful features that make Dust the perfect media server for your eBook and comic collection.">
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <h1>Powerful Features for Your Library</h1>
+        <p>Everything you need to manage, organize, and enjoy your digital book collection.</p>
+      </div>
+    </section>
+
+    <section class="features-detail">
+      <div class="container">
+        
+        <div class="feature-block">
+          <div class="feature-content">
+            <h2>📚 Comprehensive Format Support</h2>
+            <p>Dust supports all major eBook and comic formats, making it the one-stop solution for your entire digital library.</p>
+            <ul>
+              <li><strong>eBooks:</strong> EPUB, PDF, MOBI, AZW3</li>
+              <li><strong>Comics:</strong> CBR, CBZ</li>
+              <li>Automatic format detection and handling</li>
+              <li>Optimized streaming for large files</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-block">
+          <div class="feature-content">
+            <h2>🔍 Intelligent Metadata Management</h2>
+            <p>Never manually enter book information again. Dust automatically enriches your library with professional metadata.</p>
+            <ul>
+              <li>ISBN-based metadata lookup (ISBN10 and ISBN13)</li>
+              <li>Integration with OpenLibrary and Google Books APIs</li>
+              <li>Automatic cover art download and management</li>
+              <li>Author information with biographies and images</li>
+              <li>Publication dates, publishers, and descriptions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-block">
+          <div class="feature-content">
+            <h2>📂 Smart File Organization</h2>
+            <p>Dust automatically indexes your existing file structure without requiring reorganization.</p>
+            <ul>
+              <li>Automatic directory scanning and monitoring</li>
+              <li>Configurable scan intervals (default: 5 minutes)</li>
+              <li>Support for multiple media directories</li>
+              <li>Handles books organized by author or by ISBN</li>
+              <li>Detects and archives missing files automatically</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-block">
+          <div class="feature-content">
+            <h2>👥 Multi-User with Permissions</h2>
+            <p>Perfect for households or shared libraries with granular access control.</p>
+            <ul>
+              <li>Individual user accounts with secure JWT authentication</li>
+              <li>Role-based access control (Admin, Librarian, User, Guest)</li>
+              <li>Customizable permissions per user or role</li>
+              <li>Tag-based content filtering (e.g., NSFW restrictions)</li>
+              <li>Per-user reading progress and preferences</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-block">
+          <div class="feature-content">
+            <h2>📊 Reading Progress Tracking</h2>
+            <p>Never lose your place again with automatic progress sync across all your devices.</p>
+            <ul>
+              <li>Track current page and completion percentage</li>
+              <li>View reading history and statistics</li>
+              <li>Currently reading vs. completed books</li>
+              <li>Reading streaks and activity tracking</li>
+              <li>Recently read books at a glance</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-block">
+          <div class="feature-content">
+            <h2>🏷️ Flexible Tagging System</h2>
+            <p>Organize your library your way with a powerful and extensible tagging system.</p>
+            <ul>
+              <li>60+ pre-configured tags across genres, formats, and content ratings</li>
+              <li>Custom categories: genre, format, content-rating, and more</li>
+              <li>Permission-required tags for content control</li>
+              <li>Filter books by multiple tags (include/exclude)</li>
+              <li>Color-coded tag visualization</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-block">
+          <div class="feature-content">
+            <h2>🔌 RESTful API</h2>
+            <p>Build your own clients and integrations with Dust's comprehensive REST API.</p>
+            <ul>
+              <li>50+ documented API endpoints</li>
+              <li>Complete authentication and authorization system</li>
+              <li>JSON responses for easy integration</li>
+              <li>WebSocket support planned for real-time updates</li>
+              <li>CORS-enabled for web applications</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-block">
+          <div class="feature-content">
+            <h2>📦 Archive Management</h2>
+            <p>Keep your library clean and organized with automatic archival features.</p>
+            <ul>
+              <li>Automatic archival of books with missing files</li>
+              <li>Manual archive/unarchive capabilities</li>
+              <li>Archive statistics and reporting</li>
+              <li>Cleanup intervals (default: 60 minutes)</li>
+              <li>Preservation of metadata for archived items</li>
+            </ul>
+        </div>
+        </div>
+
+        <div class="feature-block">
+          <div class="feature-content">
+            <h2>🚀 Easy Deployment</h2>
+            <p>Get your server running in minutes with minimal configuration required.</p>
+            <ul>
+              <li>One-command installation script for Ubuntu/Debian</li>
+              <li>Docker support with docker-compose</li>
+              <li>Single binary deployment (no runtime dependencies except musl)</li>
+              <li>Bundled SQLite database (no separate database server needed)</li>
+              <li>Systemd service for automatic startup</li>
+              <li>Environment-based configuration</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="feature-block">
+          <div class="feature-content">
+            <h2>🔒 Security First</h2>
+            <p>Your library is protected with industry-standard security practices.</p>
+            <ul>
+              <li>JWT token authentication with HS256 signing</li>
+              <li>Bcrypt password hashing</li>
+              <li>Session management with configurable expiration</li>
+              <li>Permission checks at every endpoint</li>
+              <li>Secure environment variable configuration</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>Ready to Get Started?</h2>
+        <p>Set up your own Dust server in just a few minutes.</p>
+        <div class="cta-actions">
+          <a href="/setup" class="btn-primary">Installation Guide</a>
+          <a href="/developers" class="btn-secondary">API Documentation</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    flex: 1;
+  }
+
+  .page-header {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  }
+
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .page-header p {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+  }
+
+  .features-detail {
+    padding: 4rem 0;
+  }
+
+  .feature-block {
+    margin-bottom: 4rem;
+    background: var(--color-bg-light);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .feature-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-content p {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+  }
+
+  .feature-content ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .feature-content ul li {
+    padding: 0.5rem 0 0.5rem 2rem;
+    position: relative;
+    color: var(--color-text-muted);
+  }
+
+  .feature-content ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+
+  .cta-section {
+    padding: 4rem 0;
+    text-align: center;
+    background: var(--color-bg-light);
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .feature-block {
+      padding: 1.5rem;
+    }
+
+    .feature-content h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

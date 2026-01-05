@@ -1,0 +1,499 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Setup Guide - Dust Media Server" description="Step-by-step guide to install and configure Dust on your Ubuntu server or homelab.">
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <h1>Setup Guide</h1>
+        <p>Get Dust running on your server in minutes</p>
+      </div>
+    </section>
+
+    <section class="setup-content">
+      <div class="container">
+        
+        <div class="setup-method">
+          <h2>🚀 Quick Install (Recommended)</h2>
+          <p>The easiest way to get started with Dust on Ubuntu/Debian systems.</p>
+          
+          <h3>Interactive Installation</h3>
+          <p>Lets you configure directories and port during setup:</p>
+          <div class="code-block">
+            <pre><code>curl -fsSL https://raw.githubusercontent.com/dust-books/dust-server/main/scripts/install.sh -o /tmp/install-dust.sh
+sudo bash /tmp/install-dust.sh</code></pre>
+          </div>
+
+          <h3>Quick Install with Defaults</h3>
+          <p>Uses default settings (directories: <code>/media/books:/media/comics</code>, port: <code>4001</code>):</p>
+          <div class="code-block">
+            <pre><code>curl -fsSL https://raw.githubusercontent.com/dust-books/dust-server/main/scripts/install.sh | sudo bash</code></pre>
+          </div>
+
+          <div class="info-box">
+            <strong>What this does:</strong>
+            <ul>
+              <li>Downloads the latest Dust release</li>
+              <li>Installs runtime dependencies (musl)</li>
+              <li>Installs to <code>/opt/dust</code></li>
+              <li>Sets up systemd service for automatic startup</li>
+              <li>Configures environment variables</li>
+              <li>Generates secure JWT secret</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="setup-method">
+          <h2>🐳 Docker Setup</h2>
+          <p>Run Dust in a container for easy deployment and isolation.</p>
+
+          <h3>Step 1: Create Environment File</h3>
+          <div class="code-block">
+            <pre><code>cat &gt; .env &lt;&lt; EOF
+JWT_SECRET=$(openssl rand -base64 32)
+dirs=/app/books
+PORT=4001
+DATABASE_URL=file:/app/data/dust.db
+EOF</code></pre>
+          </div>
+
+          <h3>Step 2: Create docker-compose.yml</h3>
+          <div class="code-block">
+            <pre><code>version: '3.8'
+services:
+  dust-server:
+    image: dustbooks/dust-server:latest
+    container_name: dust
+    ports:
+      - "4001:4001"
+    volumes:
+      - ./books:/app/books:ro
+      - dust-data:/app/data
+    env_file:
+      - .env
+    restart: unless-stopped
+
+volumes:
+  dust-data:</code></pre>
+          </div>
+
+          <h3>Step 3: Start the Server</h3>
+          <div class="code-block">
+            <pre><code>docker compose up -d</code></pre>
+          </div>
+
+          <div class="info-box">
+            <strong>Note:</strong> Make sure to create a <code>./books</code> directory and add your eBooks/comics before starting.
+          </div>
+        </div>
+
+        <div class="setup-method">
+          <h2>🔧 Build from Source</h2>
+          <p>For developers or those who want full control.</p>
+
+          <h3>Prerequisites</h3>
+          <ul>
+            <li>Zig compiler (latest stable version)</li>
+            <li>Git</li>
+          </ul>
+
+          <h3>Build Steps</h3>
+          <div class="code-block">
+            <pre><code># Clone the repository
+git clone https://github.com/dust-books/dust-server.git
+cd dust-server
+
+# Build the server
+zig build -Doptimize=ReleaseSafe
+
+# Set required environment variables
+export JWT_SECRET=$(openssl rand -base64 32)
+export DUST_DIRS="/path/to/books:/another/path"
+
+# Run the server
+./zig-out/bin/dust-server</code></pre>
+          </div>
+        </div>
+
+        <div class="config-section">
+          <h2>⚙️ Configuration</h2>
+          <p>Customize Dust with environment variables.</p>
+
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Required</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>JWT_SECRET</code></td>
+                <td><strong>Yes</strong></td>
+                <td>-</td>
+                <td>Secret key for JWT authentication</td>
+              </tr>
+              <tr>
+                <td><code>DUST_DIRS</code></td>
+                <td>No</td>
+                <td>-</td>
+                <td>Colon-separated directories to scan</td>
+              </tr>
+              <tr>
+                <td><code>PORT</code></td>
+                <td>No</td>
+                <td>4001</td>
+                <td>Server port</td>
+              </tr>
+              <tr>
+                <td><code>DATABASE_URL</code></td>
+                <td>No</td>
+                <td>file:./dust.db</td>
+                <td>SQLite database path</td>
+              </tr>
+              <tr>
+                <td><code>SCAN_INTERVAL_MINUTES</code></td>
+                <td>No</td>
+                <td>5</td>
+                <td>Directory scan frequency</td>
+              </tr>
+              <tr>
+                <td><code>CLEANUP_INTERVAL_MINUTES</code></td>
+                <td>No</td>
+                <td>60</td>
+                <td>Archive cleanup frequency</td>
+              </tr>
+              <tr>
+                <td><code>GOOGLE_BOOKS_API_KEY</code></td>
+                <td>No</td>
+                <td>-</td>
+                <td>Google Books API key for metadata</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Example .env File</h3>
+          <div class="code-block">
+            <pre><code>JWT_SECRET=your-secure-random-string
+DUST_DIRS=/media/books:/media/comics
+PORT=4001
+SCAN_INTERVAL_MINUTES=10
+CLEANUP_INTERVAL_MINUTES=120
+GOOGLE_BOOKS_API_KEY=optional-api-key</code></pre>
+          </div>
+        </div>
+
+        <div class="file-structure">
+          <h2>📂 Organizing Your Library</h2>
+          <p>Dust works best when your files are organized in a specific structure:</p>
+
+          <h3>For eBooks</h3>
+          <div class="code-block">
+            <pre><code>/media/books/
+├── Author Name/
+│   ├── Book Title/
+│   │   ├── book.epub
+│   │   └── cover.jpg (optional)
+│   └── Another Book/
+│       ├── 9781234567890.epub  (ISBN-based filename)
+│       └── cover.jpg
+└── Another Author/
+    └── Their Book/
+        └── book.pdf</code></pre>
+          </div>
+
+          <h3>For Comics</h3>
+          <div class="code-block">
+            <pre><code>/media/comics/
+├── Publisher Name/
+│   ├── Series Name/
+│   │   ├── 001/
+│   │   │   ├── issue-001.cbz
+│   │   │   └── cover.jpg (optional)
+│   │   └── 002/
+│   │       └── issue-002.cbz
+└── Another Publisher/
+    └── Another Series/
+        └── 001/
+            └── comic.cbr</code></pre>
+          </div>
+
+          <div class="info-box">
+            <strong>Pro Tip:</strong> Name your eBook files with their ISBN (e.g., <code>9781234567890.epub</code>) to enable automatic metadata fetching from OpenLibrary and Google Books!
+          </div>
+        </div>
+
+        <div class="next-steps">
+          <h2>✅ Verify Installation</h2>
+          <p>After installation, verify Dust is running:</p>
+
+          <div class="code-block">
+            <pre><code># Check health endpoint
+curl http://localhost:4001/health
+
+# Expected response:
+# &#123;"status":"ok","version":"1.0.0","service":"dust-server"&#125;</code></pre>
+          </div>
+
+          <p>If using systemd (Ubuntu install):</p>
+          <div class="code-block">
+            <pre><code># Check service status
+sudo systemctl status dust
+
+# View logs
+sudo journalctl -u dust -f</code></pre>
+          </div>
+        </div>
+
+        <div class="next-steps">
+          <h2>🎉 Next Steps</h2>
+          <ul>
+            <li>Open <code>http://your-server:4001</code> in your browser</li>
+            <li>Create your first user account via the web interface or API</li>
+            <li>Add books to your configured directories</li>
+            <li>Wait for automatic scanning or trigger a manual scan</li>
+            <li>Start reading!</li>
+          </ul>
+        </div>
+
+        <div class="troubleshooting">
+          <h2>🔍 Troubleshooting</h2>
+          
+          <h3>Server won't start</h3>
+          <ul>
+            <li>Ensure <code>JWT_SECRET</code> is set</li>
+            <li>Check port 4001 is not already in use</li>
+            <li>Verify file permissions on directories</li>
+          </ul>
+
+          <h3>Books not appearing</h3>
+          <ul>
+            <li>Check <code>DUST_DIRS</code> is configured correctly</li>
+            <li>Ensure files follow the expected directory structure</li>
+            <li>Wait for the scan interval (default: 5 minutes)</li>
+            <li>Check logs for scanning activity</li>
+          </ul>
+
+          <h3>Metadata not loading</h3>
+          <ul>
+            <li>Verify filename is a valid ISBN (10 or 13 digits)</li>
+            <li>Check internet connectivity for API access</li>
+            <li>Consider adding a <code>GOOGLE_BOOKS_API_KEY</code> for better results</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>Need Help?</h2>
+        <p>Join the community or report issues on GitHub.</p>
+        <div class="cta-actions">
+          <a href="https://github.com/dust-books/dust-server/discussions" class="btn-primary" target="_blank" rel="noopener">Community Discussions</a>
+          <a href="https://github.com/dust-books/dust-server/issues" class="btn-secondary" target="_blank" rel="noopener">Report an Issue</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    flex: 1;
+  }
+
+  .page-header {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  }
+
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .page-header p {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+  }
+
+  .setup-content {
+    padding: 4rem 0;
+  }
+
+  .setup-method, .config-section, .file-structure, .next-steps, .troubleshooting {
+    margin-bottom: 4rem;
+  }
+
+  .setup-method h2, .config-section h2, .file-structure h2, .next-steps h2, .troubleshooting h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .setup-method h3, .config-section h3, .file-structure h3, .troubleshooting h3 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .setup-method p, .config-section p, .file-structure p {
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .code-block {
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    color: var(--color-accent);
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  code {
+    background: var(--color-bg-light);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.875rem;
+    color: var(--color-accent);
+  }
+
+  .info-box {
+    background: rgba(59, 130, 246, 0.1);
+    border-left: 4px solid var(--color-primary);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0.5rem;
+  }
+
+  .info-box strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  .info-box ul {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .info-box li {
+    color: var(--color-text-muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .config-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: var(--color-bg-light);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .config-table th, .config-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .config-table th {
+    background: rgba(59, 130, 246, 0.1);
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .config-table td {
+    color: var(--color-text-muted);
+  }
+
+  .config-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .next-steps ul, .troubleshooting ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .next-steps li, .troubleshooting li {
+    padding: 0.5rem 0 0.5rem 2rem;
+    position: relative;
+    color: var(--color-text-muted);
+  }
+
+  .next-steps li:before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary);
+    font-weight: bold;
+  }
+
+  .troubleshooting li:before {
+    content: "•";
+    position: absolute;
+    left: 0.5rem;
+    color: var(--color-primary);
+  }
+
+  .cta-section {
+    padding: 4rem 0;
+    text-align: center;
+    background: var(--color-bg-light);
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .config-table {
+      font-size: 0.875rem;
+    }
+
+    .config-table th, .config-table td {
+      padding: 0.75rem 0.5rem;
+    }
+  }
+</style>

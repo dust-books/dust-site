@@ -1,0 +1,629 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="For Developers - Dust Media Server" description="Build your own clients and integrations with Dust's comprehensive REST API.">
+  <main>
+    <section class="page-header">
+      <div class="container">
+        <h1>Built for Developers</h1>
+        <p>Extend Dust with custom clients and integrations</p>
+      </div>
+    </section>
+
+    <section class="dev-intro">
+      <div class="container">
+        <div class="intro-content">
+          <h2>Your Library, Your Client</h2>
+          <p>
+            The official Dust web client is just the beginning. Dust's comprehensive REST API 
+            makes it easy to build custom clients tailored to your exact needs—whether that's 
+            a mobile app, desktop application, CLI tool, or integration with your existing workflows.
+          </p>
+          <p>
+            <strong>Build what works for you.</strong> The Dust team encourages developers to 
+            explore the API and create their own clients to fit their unique use cases.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="api-overview">
+      <div class="container">
+        <h2>🔌 REST API Overview</h2>
+        
+        <div class="api-stats">
+          <div class="stat-card">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">API Endpoints</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">10</div>
+            <div class="stat-label">Resource Categories</div>
+          </div>
+        </div>
+
+        <div class="api-features">
+          <h3>API Features</h3>
+          <div class="features-grid">
+            <div class="feature-item">
+              <strong>🔐 Authentication</strong>
+              <p>JWT-based authentication with HS256 signing and 24-hour token expiration</p>
+            </div>
+            <div class="feature-item">
+              <strong>🎯 Permissions</strong>
+              <p>Role-based access control with granular permission checks</p>
+            </div>
+            <div class="feature-item">
+              <strong>📄 JSON Responses</strong>
+              <p>Consistent JSON response format with comprehensive error handling</p>
+            </div>
+            <div class="feature-item">
+              <strong>🌐 CORS-Enabled</strong>
+              <p>Ready for web applications with configurable CORS support</p>
+            </div>
+            <div class="feature-item">
+              <strong>📊 Filtering</strong>
+              <p>Advanced filtering by tags, genres, authors, and more</p>
+            </div>
+            <div class="feature-item">
+              <strong>📡 Streaming</strong>
+              <p>Efficient file streaming for books and comics</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="api-categories">
+      <div class="container">
+        <h2>📚 API Categories</h2>
+        <p>Explore the complete range of Dust's API capabilities:</p>
+
+        <div class="categories-grid">
+          <div class="category-card">
+            <h3>Authentication</h3>
+            <ul>
+              <li>Login / Logout</li>
+              <li>User registration</li>
+              <li>Token management</li>
+              <li>Profile access</li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <h3>Books</h3>
+            <ul>
+              <li>List and search books</li>
+              <li>Get book details</li>
+              <li>Stream book content</li>
+              <li>Filter by tags/genres</li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <h3>Authors</h3>
+            <ul>
+              <li>Browse authors</li>
+              <li>Author details & biography</li>
+              <li>Books by author</li>
+              <li>Author statistics</li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <h3>Reading Progress</h3>
+            <ul>
+              <li>Track current page</li>
+              <li>Update progress</li>
+              <li>Reading statistics</li>
+              <li>Completion tracking</li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <h3>Tags & Genres</h3>
+            <ul>
+              <li>List all tags</li>
+              <li>Filter by category</li>
+              <li>Assign tags to books</li>
+              <li>Genre management</li>
+            </ul>
+          </div>
+
+          <div class="category-card">
+            <h3>Admin</h3>
+            <ul>
+              <li>User management</li>
+              <li>Role configuration</li>
+              <li>Permission control</li>
+              <li>System dashboard</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick-start">
+      <div class="container">
+        <h2>🚀 Quick Start</h2>
+        
+        <h3>Authentication Example</h3>
+        <div class="code-block">
+          <pre><code># Login and get JWT token
+curl -X POST http://localhost:4001/auth/login \
+  -H "Content-Type: application/json" \
+  -d '&#123;
+    "email": "user@example.com",
+    "password": "password123"
+  &#125;'
+
+# Response:
+&#123;
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": &#123;
+    "id": 1,
+    "username": "user",
+    "email": "user@example.com",
+    "roles": ["user"],
+    "permissions": ["books.read"]
+  &#125;
+&#125;</code></pre>
+        </div>
+
+        <h3>Fetching Books Example</h3>
+        <div class="code-block">
+          <pre><code># Get all books (with authentication)
+curl http://localhost:4001/books/ \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+
+# Filter by genre
+curl "http://localhost:4001/books/?includeGenres=Fiction,Mystery" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+
+# Exclude NSFW content
+curl "http://localhost:4001/books/?excludeTags=NSFW" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"</code></pre>
+        </div>
+
+        <h3>Stream a Book</h3>
+        <div class="code-block">
+          <pre><code># Stream book content
+curl http://localhost:4001/books/1/stream \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  --output book.epub</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="client-ideas">
+      <div class="container">
+        <h2>💡 Client Ideas</h2>
+        <p>What could you build with the Dust API?</p>
+
+        <div class="ideas-grid">
+          <div class="idea-card">
+            <div class="idea-icon">📱</div>
+            <h3>Mobile Apps</h3>
+            <p>Native iOS or Android apps with offline reading, custom themes, and push notifications for new books.</p>
+          </div>
+
+          <div class="idea-card">
+            <div class="idea-icon">🖥️</div>
+            <h3>Desktop Applications</h3>
+            <p>Electron or native desktop apps with system integration, keyboard shortcuts, and local caching.</p>
+          </div>
+
+          <div class="idea-card">
+            <div class="idea-icon">⌨️</div>
+            <h3>CLI Tools</h3>
+            <p>Command-line interfaces for power users to manage libraries, bulk operations, and automation scripts.</p>
+          </div>
+
+          <div class="idea-card">
+            <div class="idea-icon">📖</div>
+            <h3>E-Reader Integration</h3>
+            <p>Direct integration with e-readers like Kobo or Kindle for seamless syncing and downloading.</p>
+          </div>
+
+          <div class="idea-card">
+            <div class="idea-icon">🤖</div>
+            <h3>Bot Integrations</h3>
+            <p>Discord, Telegram, or Slack bots for library updates, reading reminders, and recommendations.</p>
+          </div>
+
+          <div class="idea-card">
+            <div class="idea-icon">📊</div>
+            <h3>Analytics Dashboards</h3>
+            <p>Custom visualizations of reading habits, collection statistics, and trends over time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="resources">
+      <div class="container">
+        <h2>📖 Resources</h2>
+        
+        <div class="resource-list">
+          <div class="resource-item">
+            <h3>API Reference</h3>
+            <p>Complete documentation of all endpoints, request/response formats, and authentication.</p>
+            <a href="https://github.com/dust-books/dust-server/blob/main/API-REFERENCE.md" class="btn-secondary" target="_blank" rel="noopener">
+              View API Docs
+            </a>
+          </div>
+
+          <div class="resource-item">
+            <h3>Codebase Analysis</h3>
+            <p>Deep dive into Dust's architecture, database schema, and implementation details.</p>
+            <a href="https://github.com/dust-books/dust-server/blob/main/CODEBASE-ANALYSIS.md" class="btn-secondary" target="_blank" rel="noopener">
+              Read Analysis
+            </a>
+          </div>
+
+          <div class="resource-item">
+            <h3>Official Web Client</h3>
+            <p>Reference implementation built with Lit and TypeScript. Great starting point for your own client.</p>
+            <a href="https://github.com/dust-books/dust-server/tree/main/client" class="btn-secondary" target="_blank" rel="noopener">
+              Browse Source
+            </a>
+          </div>
+
+          <div class="resource-item">
+            <h3>Contributing Guide</h3>
+            <p>Learn how to contribute to Dust or share your custom client with the community.</p>
+            <a href="https://github.com/dust-books/dust-server/blob/main/CONTRIBUTING.md" class="btn-secondary" target="_blank" rel="noopener">
+              Contribute
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="community">
+      <div class="container">
+        <h2>🌟 Share Your Work</h2>
+        <p>
+          Built something cool with Dust? We'd love to see it! Share your custom clients, 
+          integrations, and tools with the community.
+        </p>
+        <div class="cta-actions">
+          <a href="https://github.com/dust-books/dust-server/discussions" class="btn-primary" target="_blank" rel="noopener">
+            Show & Tell
+          </a>
+          <a href="https://github.com/dust-books/dust-server/issues" class="btn-secondary" target="_blank" rel="noopener">
+            Report Issues
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  main {
+    flex: 1;
+  }
+
+  .page-header {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  }
+
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .page-header p {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+  }
+
+  .dev-intro {
+    padding: 4rem 0;
+    background: var(--color-bg-light);
+  }
+
+  .intro-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .intro-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .intro-content p {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .api-overview {
+    padding: 4rem 0;
+  }
+
+  .api-overview h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .api-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: var(--color-bg-light);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+    border: 1px solid var(--color-border);
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+  }
+
+  .api-features h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .feature-item {
+    background: var(--color-bg-light);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .feature-item strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+  }
+
+  .feature-item p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .api-categories {
+    padding: 4rem 0;
+    background: var(--color-bg-light);
+  }
+
+  .api-categories h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .api-categories > .container > p {
+    text-align: center;
+    color: var(--color-text-muted);
+    margin-bottom: 3rem;
+    font-size: 1.125rem;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .category-card {
+    background: var(--color-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .category-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .category-card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .category-card li {
+    color: var(--color-text-muted);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .category-card li:last-child {
+    border-bottom: none;
+  }
+
+  .quick-start {
+    padding: 4rem 0;
+  }
+
+  .quick-start h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .quick-start h3 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .code-block {
+    background: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+
+  .code-block pre {
+    margin: 0;
+  }
+
+  .code-block code {
+    color: var(--color-accent);
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .client-ideas {
+    padding: 4rem 0;
+    background: var(--color-bg-light);
+  }
+
+  .client-ideas h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .client-ideas > .container > p {
+    text-align: center;
+    color: var(--color-text-muted);
+    margin-bottom: 3rem;
+    font-size: 1.125rem;
+  }
+
+  .ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .idea-card {
+    background: var(--color-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    text-align: center;
+    transition: transform 0.2s;
+  }
+
+  .idea-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
+  }
+
+  .idea-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .idea-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .idea-card p {
+    color: var(--color-text-muted);
+  }
+
+  .resources {
+    padding: 4rem 0;
+  }
+
+  .resources h2 {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .resource-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .resource-item {
+    background: var(--color-bg-light);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .resource-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .resource-item p {
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+
+  .community {
+    padding: 4rem 0;
+    background: var(--color-bg-light);
+    text-align: center;
+  }
+
+  .community h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .community p {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .page-header h1 {
+      font-size: 2rem;
+    }
+
+    .categories-grid, .ideas-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

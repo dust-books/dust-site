@@ -1,0 +1,254 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Dust - A free and open-source media server for eBooks and digital comics" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-content">
+          <a href="/" class="logo">
+            <span class="logo-icon">📚</span>
+            <span class="logo-text">Dust</span>
+          </a>
+          <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/features">Features</a></li>
+            <li><a href="/setup">Setup</a></li>
+            <li><a href="/developers">Developers</a></li>
+            <li><a href="/about">About</a></li>
+          </ul>
+          <a href="https://github.com/dust-books/dust-server" class="btn-secondary" target="_blank" rel="noopener">
+            GitHub
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <slot />
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Dust Media Server</h3>
+            <p>Free and open-source media server for eBooks and digital comics.</p>
+          </div>
+          <div class="footer-section">
+            <h4>Links</h4>
+            <ul>
+              <li><a href="https://github.com/dust-books/dust-server" target="_blank" rel="noopener">GitHub</a></li>
+              <li><a href="https://github.com/dust-books/dust-server/issues" target="_blank" rel="noopener">Report Issues</a></li>
+              <li><a href="/developers">API Documentation</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Community</h4>
+            <ul>
+              <li><a href="https://github.com/dust-books/dust-server/discussions" target="_blank" rel="noopener">Discussions</a></li>
+              <li><a href="https://github.com/dust-books/dust-server/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024-2026 Dust Contributors. Licensed under MIT.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --color-primary: #3b82f6;
+    --color-primary-dark: #2563eb;
+    --color-secondary: #8b5cf6;
+    --color-accent: #06b6d4;
+    --color-bg: #0f172a;
+    --color-bg-light: #1e293b;
+    --color-text: #f1f5f9;
+    --color-text-muted: #94a3b8;
+    --color-border: #334155;
+    --max-width: 1200px;
+    --spacing: 1rem;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing);
+  }
+
+  .navbar {
+    background: var(--color-bg-light);
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .logo-icon {
+    font-size: 2rem;
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-links a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--color-text);
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--color-primary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 2px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .footer {
+    margin-top: auto;
+    background: var(--color-bg-light);
+    border-top: 1px solid var(--color-border);
+    padding: 3rem 0 1rem;
+  }
+
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-section h3, .footer-section h4 {
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+
+  .footer-section p {
+    color: var(--color-text-muted);
+  }
+
+  .footer-section ul {
+    list-style: none;
+  }
+
+  .footer-section ul li {
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-section a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-section a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
+
+    .nav-content {
+      gap: 1rem;
+    }
+  }
+</style>
