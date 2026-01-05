@@ -2,9 +2,20 @@
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  type?: string;
 }
 
-const { title, description = "Dust - A free and open-source media server for eBooks and digital comics" } = Astro.props;
+const { 
+  title, 
+  description = "Dust - A free and open-source media server for eBooks and digital comics",
+  image = "/images/og-image.png",
+  type = "website"
+} = Astro.props;
+
+const siteUrl = "https://www.dustbooks.org";
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const ogImage = new URL(image, siteUrl);
 ---
 
 <!doctype html>
@@ -14,7 +25,29 @@ const { title, description = "Dust - A free and open-source media server for eBo
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Dust Media Server" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    
+    <!-- Additional SEO -->
+    <meta name="author" content="Dust Contributors" />
+    <meta name="keywords" content="ebook server, media server, self-hosted, open source, EPUB, PDF, CBR, CBZ, digital library" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#3b82f6" />
   </head>
   <body>
     <nav class="navbar">
